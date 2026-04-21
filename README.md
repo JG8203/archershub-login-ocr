@@ -2,24 +2,21 @@
 
 # AnimLow Cortisol
 
-AnimLow Cortisol is a Chrome Manifest V3 extension that reads the login challenge image on Archers Hub, runs OCR locally with packaged Tesseract assets, and fills the captcha field automatically.
+AnimLow Cortisol is an extension which helps lower your cortisol while using ArchersHub (autofills captcha).
 
 ## What It Does
 
-- Runs OCR locally in the browser. No captcha image data is sent to external services.
-- Works on `https://archershub.dlsu.edu.ph/*`.
+- Runs OCR on ArchersHub Captcha *Locally*
 - Tries to autofill the captcha field after the challenge image loads.
 - Lets you rerun OCR from the extension toolbar button.
-- Includes an on-page checkbox to hide the captcha block after autofill.
+- Includes a checkbox to hide the captcha block after autofill.
 
 ## Install From The GitHub Release ZIP
 
-End users do not need to run `npm install`, build the project, or install dependencies manually.
-
-1. Go to the GitHub Releases page for this repository.
+1. Go to the GitHub Releases page for this repository or click [here](https://github.com/JG8203/archershub-login-ocr/releases/latest) to download the latest release
 2. Download `animlow-cortisol-release.zip` from the latest release.
-3. Extract the ZIP somewhere permanent on your machine.
-4. Open Chrome and go to `chrome://extensions`.
+3. Extract the ZIP somewhere on your machine.
+4. Open your browser and go to `chrome://extensions`.
 5. Turn on `Developer mode` using the toggle in the top-right corner.
 6. Click `Load unpacked`.
 7. Select the extracted release folder.
