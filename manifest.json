@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "Archers Hub Login OCR",
+  "version": "1.0.0",
+  "description": "Runs local OCR on the Archers Hub login challenge image and fills the code automatically.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://archershub.dlsu.edu.ph/*"
+  ],
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "32": "assets/icons/icon32.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Run captcha OCR again",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "32": "assets/icons/icon32.png"
+    }
+  },
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://archershub.dlsu.edu.ph/*"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "vendor/*"
+      ],
+      "matches": [
+        "https://archershub.dlsu.edu.ph/*"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; worker-src 'self'; connect-src 'self';"
+  }
+}
