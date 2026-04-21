@@ -1,4 +1,4 @@
-# PLEASE WATCH THE VIDEO BELOW OR YOURE GONNA SPIKE MY CORTISOL
+# PLEASE WATCH THE VIDEO BELOW OR YOURE GONNA SPIKE MY CORTISOL (turn the volume up too lol)
 
 https://github.com/user-attachments/assets/e5b05f6e-43f8-4671-893b-f385fb95e9d3
 
