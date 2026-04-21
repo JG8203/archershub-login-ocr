@@ -4,6 +4,10 @@
 
 AnimLow Cortisol is an extension which helps lower your cortisol while using ArchersHub (autofills captcha).
 
+# PLEASE WATCH THE VIDEO BELOW OR YOURE GONNA SPIKE MY CORTISOL
+
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/N6qkX6j" data-context="false" ><a href="//imgur.com/a/N6qkX6j"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
 ## What It Does
 
 - Runs OCR on ArchersHub Captcha *Locally*
@@ -15,12 +19,9 @@ AnimLow Cortisol is an extension which helps lower your cortisol while using Arc
 
 1. Go to the GitHub Releases page for this repository or click [here](https://github.com/JG8203/archershub-login-ocr/releases/latest) to download the latest release
 2. Download `animlow-cortisol-release.zip` from the latest release.
-3. Extract the ZIP somewhere on your machine.
-4. Open your browser and go to `chrome://extensions`.
-5. Turn on `Developer mode` using the toggle in the top-right corner.
-6. Click `Load unpacked`.
-7. Select the extracted release folder.
-8. Make sure the `AnimLow Cortisol` extension appears in your extensions list and is enabled.
+3. Open your browser and go to `chrome://extensions`.
+4. Turn on `Developer mode` using the toggle in the top-right corner.
+6. Drag the downloaded file onto the extensions window.
 
 ## Use In Chrome
 
@@ -29,12 +30,6 @@ AnimLow Cortisol is an extension which helps lower your cortisol while using Arc
 3. The extension will try to read the image automatically and fill the captcha field.
 4. If you want to rerun OCR, click the extension toolbar icon.
 5. If you want the captcha block hidden after autofill, use the on-page checkbox.
-
-## Release Artifact
-
-- Production release ZIP: `dist/animlow-cortisol-release.zip`
-- Release-ready unpacked folder: `dist/release/`
-- Developer unpacked folder with localhost support: `dist/dev/`
 
 ## Developer Workflow
 
