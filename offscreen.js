@@ -63,7 +63,10 @@ async function recognizeImage(message) {
 
 async function getWorker() {
   if (!workerPromise) {
-    workerPromise = createOcrWorker();
+    workerPromise = createOcrWorker().catch((error) => {
+      workerPromise = null;
+      throw error;
+    });
   }
 
   return workerPromise;

@@ -5,7 +5,7 @@
 - Confirm the production host in `manifest.json` is correct.
 - Update the support/contact line in `PRIVACY.md`.
 - Verify the extension name, description, and version for the intended release.
-- Test `dist/dev/` locally if you need localhost validation before shipping.
+- Test `dist/release/` locally before shipping.
 
 ## Verification
 

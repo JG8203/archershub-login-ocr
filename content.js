@@ -23,10 +23,13 @@
   const WAIT_INTERVAL_MS = 100;
   const OVERLAY_TIMEOUT_MS = 5000;
   const OVERLAY_FADE_MS = 250;
+  const STUDENT_LOGIN_PATH = "/StudentLogin";
+  const SUPPORTED_PATH_PREFIX = "/StudentLogin/";
 
   const state = {
     activeRunPromise: null,
     autoRunStarted: false,
+    queuedRunTrigger: null,
     overlayTimerId: null,
     overlayFadeTimerId: null
   };
@@ -50,6 +53,9 @@
     }
 
     state.autoRunStarted = true;
+    if (!isSupportedPage()) {
+      return;
+    }
     void startOcrRun("auto");
   }
 
@@ -58,24 +64,37 @@
       return false;
     }
 
+    if (!isSupportedPage()) {
+      return false;
+    }
+
     void startOcrRun("manual");
     return false;
   }
 
   function startOcrRun(trigger) {
-    if (!state.activeRunPromise) {
-      state.activeRunPromise = runOcrFlow(trigger)
-        .catch((error) => {
-          showOverlay({
-            kind: "error",
-            message: formatUserError(error),
-            imageDataUrl: null
-          });
-        })
-        .finally(() => {
-          state.activeRunPromise = null;
-        });
+    if (state.activeRunPromise) {
+      state.queuedRunTrigger = mergeRunTriggers(state.queuedRunTrigger, trigger);
+      return state.activeRunPromise;
     }
+
+    state.activeRunPromise = runOcrFlow(trigger)
+      .catch((error) => {
+        showOverlay({
+          kind: "error",
+          message: formatUserError(error),
+          imageDataUrl: null
+        });
+      })
+      .finally(() => {
+        state.activeRunPromise = null;
+
+        if (state.queuedRunTrigger) {
+          const queuedTrigger = state.queuedRunTrigger;
+          state.queuedRunTrigger = null;
+          void startOcrRun(queuedTrigger);
+        }
+      });
 
     return state.activeRunPromise;
   }
@@ -157,6 +176,14 @@
       return sourceUrl;
     }
 
+    try {
+      return captureCaptchaImageViaCanvas(image);
+    } catch (error) {
+      return fetchCaptchaImageAsDataUrl(sourceUrl, error);
+    }
+  }
+
+  function captureCaptchaImageViaCanvas(image) {
     const width = image.naturalWidth || image.width;
     const height = image.naturalHeight || image.height;
     if (!width || !height) {
@@ -173,7 +200,46 @@
     }
 
     context.drawImage(image, 0, 0, width, height);
-    return canvas.toDataURL("image/png");
+    try {
+      return canvas.toDataURL("image/png");
+    } catch (error) {
+      throw createError(
+        "CAPTCHA_IMAGE_TAINTED",
+        error?.message || "Captcha image could not be read from the page canvas."
+      );
+    }
+  }
+
+  async function fetchCaptchaImageAsDataUrl(sourceUrl, originalError) {
+    let response;
+
+    try {
+      response = await fetch(sourceUrl, {
+        credentials: "include"
+      });
+    } catch {
+      throw originalError;
+    }
+
+    if (!response.ok) {
+      throw createError(
+        "CAPTCHA_IMAGE_FETCH_FAILED",
+        `Captcha image request failed with status ${response.status}.`
+      );
+    }
+
+    return readBlobAsDataUrl(await response.blob());
+  }
+
+  function readBlobAsDataUrl(blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = () => {
+        reject(createError("CAPTCHA_IMAGE_READ_FAILED", "Could not read the captcha image blob."));
+      };
+      reader.onload = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
   }
 
   function ensureImageReady(image) {
@@ -395,6 +461,28 @@
     const error = new Error(message);
     error.code = code;
     return error;
+  }
+
+  function isSupportedPage() {
+    if (!isSupportedHost()) {
+      return false;
+    }
+
+    return location.pathname === "/"
+      || location.pathname === STUDENT_LOGIN_PATH
+      || location.pathname.startsWith(SUPPORTED_PATH_PREFIX);
+  }
+
+  function isSupportedHost() {
+    return location.hostname === "archershub.dlsu.edu.ph";
+  }
+
+  function mergeRunTriggers(currentTrigger, nextTrigger) {
+    if (currentTrigger === "manual" || nextTrigger === "manual") {
+      return "manual";
+    }
+
+    return nextTrigger;
   }
 
   function isVisible(element) {
