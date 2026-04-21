@@ -6,7 +6,7 @@ AnimLow Cortisol is an extension which helps lower your cortisol while using Arc
 
 # PLEASE WATCH THE VIDEO BELOW OR YOURE GONNA SPIKE MY CORTISOL
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/N6qkX6j" data-context="false" ><a href="//imgur.com/a/N6qkX6j"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+<video src="https://i.imgur.com/Zbnbkn1.mp4" width="320" height="240" controls></video>
 
 ## What It Does
 
