@@ -1,12 +1,12 @@
+# PLEASE WATCH THE VIDEO BELOW OR YOURE GONNA SPIKE MY CORTISOL
+
+https://github.com/user-attachments/assets/e5b05f6e-43f8-4671-893b-f385fb95e9d3
+
 ![AnimLow Cortisol Banner](./assets/readme/animlow-cortisol-banner.png)
 
 # AnimLow Cortisol
 
 AnimLow Cortisol is an extension which helps lower your cortisol while using ArchersHub (autofills captcha).
-
-# PLEASE WATCH THE VIDEO BELOW OR YOURE GONNA SPIKE MY CORTISOL
-
-https://github.com/user-attachments/assets/e5b05f6e-43f8-4671-893b-f385fb95e9d3
 
 ## What It Does
 
