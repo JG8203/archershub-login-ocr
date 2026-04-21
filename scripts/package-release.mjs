@@ -9,7 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 const distDir = path.join(rootDir, "dist");
 const releaseDir = path.join(distDir, "release");
-const zipPath = path.join(distDir, "archershub-login-ocr-release.zip");
+const zipPath = path.join(distDir, "animlow-cortisol-release.zip");
 
 await rm(zipPath, { force: true });
 await execFileAsync("zip", ["-qr", zipPath, "."], { cwd: releaseDir });

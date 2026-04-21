@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Archers Hub Login OCR",
+  "name": "AnimLow Cortisol",
   "version": "1.0.0",
   "description": "Runs local OCR on the Archers Hub login challenge image and fills the code automatically.",
   "minimum_chrome_version": "116",
@@ -17,7 +17,7 @@
     "128": "assets/icons/icon128.png"
   },
   "action": {
-    "default_title": "Run captcha OCR again",
+    "default_title": "Run AnimLow Cortisol again",
     "default_icon": {
       "16": "assets/icons/icon16.png",
       "32": "assets/icons/icon32.png"

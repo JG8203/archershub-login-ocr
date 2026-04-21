@@ -1,14 +1,47 @@
-# Archers Hub Login OCR
+![AnimLow Cortisol Banner](./assets/readme/animlow-cortisol-banner.png)
 
-Manifest V3 Chrome extension that runs local OCR against the login challenge image at `#captchaImageLogin`, fills `#txtCaptchaTextLogin`, and keeps all OCR processing inside the browser with packaged Tesseract assets.
+# AnimLow Cortisol
 
-## Release posture
+AnimLow Cortisol is a Chrome Manifest V3 extension that reads the login challenge image on Archers Hub, runs OCR locally with packaged Tesseract assets, and fills the captcha field automatically.
 
-- Local-only OCR. No image data is sent to external services.
-- Release package targets `https://archershub.dlsu.edu.ph/*` only.
-- Dev package is generated separately for `localhost` and `127.0.0.1`.
+## What It Does
 
-## Developer commands
+- Runs OCR locally in the browser. No captcha image data is sent to external services.
+- Works on `https://archershub.dlsu.edu.ph/*`.
+- Tries to autofill the captcha field after the challenge image loads.
+- Lets you rerun OCR from the extension toolbar button.
+- Includes an on-page checkbox to hide the captcha block after autofill.
+
+## Install From The GitHub Release ZIP
+
+End users do not need to run `npm install`, build the project, or install dependencies manually.
+
+1. Go to the GitHub Releases page for this repository.
+2. Download `animlow-cortisol-release.zip` from the latest release.
+3. Extract the ZIP somewhere permanent on your machine.
+4. Open Chrome and go to `chrome://extensions`.
+5. Turn on `Developer mode` using the toggle in the top-right corner.
+6. Click `Load unpacked`.
+7. Select the extracted release folder.
+8. Make sure the `AnimLow Cortisol` extension appears in your extensions list and is enabled.
+
+## Use In Chrome
+
+1. Open the Archers Hub login page in Chrome.
+2. Wait for the login challenge image to finish loading.
+3. The extension will try to read the image automatically and fill the captcha field.
+4. If you want to rerun OCR, click the extension toolbar icon.
+5. If you want the captcha block hidden after autofill, use the on-page checkbox.
+
+## Release Artifact
+
+- Production release ZIP: `dist/animlow-cortisol-release.zip`
+- Release-ready unpacked folder: `dist/release/`
+- Developer unpacked folder with localhost support: `dist/dev/`
+
+## Developer Workflow
+
+These steps are only for developers working from source.
 
 ```bash
 npm install
@@ -17,51 +50,13 @@ npm run check
 npm run package:release
 ```
 
-## Build outputs
+## Project Notes
 
-- `dist/release/`: Chrome Web Store-ready extension bundle
-- `dist/dev/`: unpacked extension bundle with localhost support
-- `dist/archershub-login-ocr-release.zip`: uploadable release archive
+- OCR uses packaged local assets under `vendor/` during the build process.
+- The committed repository does not require end users to fetch npm dependencies.
+- The release build is scoped to the production Archers Hub host only.
 
-## Use in Chrome
-
-End users do not need to run `npm install` or build anything. Only the packaged extension output is needed.
-
-### Load the unpacked extension
-
-1. Get a built extension folder:
-   - use `dist/release/` from a packaged build
-   - or unzip `archershub-login-ocr-release.zip`
-2. Open Chrome and go to `chrome://extensions`.
-3. Turn on `Developer mode` using the toggle in the top-right corner.
-4. Click `Load unpacked`.
-5. Select one of these folders:
-   - the extracted release folder for the production-host build
-   - `dist/dev/` only if you are doing developer localhost testing
-
-### Use the extension on the login page
-
-1. Open the supported login page in Chrome.
-2. Wait for the captcha image to finish loading.
-3. The extension will try to read the captcha automatically and fill the captcha input.
-4. Use the extension toolbar button if you want to rerun OCR manually.
-5. Use the on-page checkbox if you want the captcha block hidden after autofill.
-
-## Runtime behavior
-
-- Runs OCR automatically on matching login pages.
-- Lets the user rerun OCR from the extension toolbar button.
-- Shows a helper notification with a close button and auto-dismiss.
-- Keeps an on-page checkbox for hiding the captcha after autofill.
-
-## Included files
-
-- `content.js` and `content.css`
-- `service-worker.js`
-- `offscreen.html` and `offscreen.js`
-- `assets/icons/` committed static PNG assets
-
-## Release docs
+## Docs
 
 - [Privacy policy](./PRIVACY.md)
 - [Release checklist](./RELEASE.md)

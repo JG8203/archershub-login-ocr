@@ -1,6 +1,6 @@
-# Privacy Policy
+# AnimLow Cortisol Privacy Policy
 
-Archers Hub Login OCR performs OCR locally inside the Chrome extension package.
+AnimLow Cortisol performs OCR locally inside the Chrome extension package.
 
 ## Data handling
 

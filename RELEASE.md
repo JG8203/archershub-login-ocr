@@ -1,4 +1,4 @@
-# Release Checklist
+# AnimLow Cortisol Release Checklist
 
 ## Before packaging
 
@@ -19,5 +19,5 @@
 ## Packaging
 
 - Run `npm run package:release`.
-- Upload `dist/archershub-login-ocr-release.zip` to the Chrome Web Store dashboard.
+- Upload `dist/animlow-cortisol-release.zip` to GitHub Releases or the Chrome Web Store dashboard.
 - Prepare store listing text, screenshots, and the final support contact.

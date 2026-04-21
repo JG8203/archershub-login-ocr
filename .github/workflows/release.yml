@@ -32,5 +32,5 @@ jobs:
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/archershub-login-ocr-release.zip
+          files: dist/animlow-cortisol-release.zip
           generate_release_notes: true

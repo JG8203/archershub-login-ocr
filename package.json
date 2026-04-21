@@ -1,8 +1,8 @@
 {
-  "name": "archershub-login-ocr",
+  "name": "animlow-cortisol",
   "version": "1.0.0",
   "private": true,
-  "description": "Chrome MV3 extension for local OCR on the Archers Hub login captcha image.",
+  "description": "Chrome MV3 extension for local OCR on the Archers Hub login challenge image.",
   "scripts": {
     "build:assets": "node scripts/copy-assets.mjs",
     "build:bundles": "node scripts/build-bundles.mjs",
